@@ -12,7 +12,12 @@ class IntroPage extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(80, 120, 80, 120),
-            child: Image.asset('assets/images/avocado.png'),
+
+            child: SizedBox(
+              width: 200,
+              height: 200,
+              child: Image.asset('assets/images/avocado.png'),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(24),
@@ -32,14 +37,15 @@ class IntroPage extends StatelessWidget {
           ),
           Spacer(),
           GestureDetector(
-            onTap: () => Navigator.pushReplacement(
+            onTap:
+                () => Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
                       return HomePage();
                     },
                   ),
-            ),
+                ),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.deepPurple,

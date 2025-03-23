@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groceryapp/models/cart_model.dart';
 import 'package:provider/provider.dart';
 
@@ -34,11 +35,22 @@ class CartPage extends StatelessWidget {
                           subtitle: Text('\$${value.cartItems[index][1]}'),
                           trailing: IconButton(
                             icon: Icon(Icons.cancel),
-                            onPressed:
-                                () => Provider.of<CartModel>(
-                                  context,
-                                  listen: false,
-                                ).removeItemFromCart(index),
+                            onPressed: () {
+                               Fluttertoast.cancel();
+                              String message = Provider.of<CartModel>(
+                                context,
+                                listen: false,
+                              ).removeItemFromCart(index);
+                              Fluttertoast.showToast(
+                                msg: message,
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red.shade200,
+                                textColor: Colors.white,
+                                fontSize: 16.0,
+                              );
+                            },
                           ),
                         ),
                       ),

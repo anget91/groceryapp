@@ -8,23 +8,26 @@ class CartModel extends ChangeNotifier {
     ["Water", "1.00", "assets/images/water.png", Colors.blue],
   ];
 
-  List _cartItems = [];
+  final List _cartItems = [];
 
   get shopItems => _shopItems;
 
   //add items to cart
   get cartItems => _cartItems;
-  void addItemToCart(int index) {
+  String addItemToCart(int index) {
     _cartItems.add(_shopItems[index]);
     notifyListeners();
+    return " 🛍️ ${_shopItems[index][0]} added to cart ";
   }
 
   //remove items from cart
 
-  void removeItemFromCart(int index) {
-    _cartItems.removeAt(index);
-    notifyListeners();
-  }
+String removeItemFromCart(int index) {
+  String itemName = _cartItems[index][0]; // Guardar el nombre antes de eliminar
+  _cartItems.removeAt(index);
+  notifyListeners();
+  return " ❌ $itemName removed from cart ";
+}
 
   //calculate total price
   String totalPrice() {

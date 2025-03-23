@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:groceryapp/components/grocery_item_tile.dart';
 import 'package:groceryapp/models/cart_model.dart';
@@ -77,10 +78,21 @@ class HomePage extends StatelessWidget {
                           itemImage: value.shopItems[index][2],
                           color: value.shopItems[index][3],
                           onPressed: () {
-                            Provider.of<CartModel>(
+                            String message = Provider.of<CartModel>(
                               context,
                               listen: false,
                             ).addItemToCart(index);
+                            Color color = value.shopItems[index][3];
+                            Fluttertoast.showToast(
+                              msg: message,
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: color,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                              
+                            );
                           },
                         );
                       },
